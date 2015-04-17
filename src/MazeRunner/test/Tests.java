@@ -1,9 +1,10 @@
-package MazeRunner;
+package MazeRunner.test;
 //Do not modify this file
 
 import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
 import org.junit.Test;
+import MazeRunner.core.obj.*;
 
 public class Tests {
     
