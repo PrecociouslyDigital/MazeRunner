@@ -5,11 +5,13 @@
  */
 package MazeRunner.core.obj;
 
+import java.io.Serializable;
+
 /**
  *
  * @author s-yinb
  */
-public class Maze {
+public class Maze implements Serializable{
 
     int rows, cols;
 
@@ -30,10 +32,14 @@ public class Maze {
     }
 
     public boolean isGlade(int row, int col) {
-        
+        return checkGladeIndex(row, rows) && checkGladeIndex(col,cols);
     }
     public boolean checkGladeIndex(int num, int total){
-        
+        if(total%2 == 1){
+            return Math.abs(total/2 + 1 - num) <= 3;
+        }else{
+            return num > total/2 ? num - total/2  < 4 : total/2 - num < 3;
+        }
     }
 
     public boolean isEdge(int row, int col) {
