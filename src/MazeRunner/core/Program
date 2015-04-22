@@ -1,0 +1,24 @@
+package core;
+import java.util.*;
+public class Program{
+    Maze maze;
+    public static void main(String[] args){
+        maze = new Maze();
+        Scanner scn = new Scanner(System.in);
+        String input = scn.nextLine();
+        while(!input.equalsIgnoreCase("quit")){
+            switch(input){
+                case "generate":
+                    maze.generate();
+                case "solve":
+                    maze.solve();
+                case "load":
+                    maze.load("");
+                case "save":
+                    maze.save("");
+                case "draw":
+                    maze.draw();
+            }
+        }
+    }
+}
