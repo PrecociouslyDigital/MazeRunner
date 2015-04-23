@@ -1,7 +1,8 @@
-package core;
+package MazeRunner.core;
+import MazeRunner.core.obj.Maze;
 import java.util.*;
 public class Program{
-    Maze maze;
+    private static Maze maze;
     public static void main(String[] args){
         maze = new Maze();
         Scanner scn = new Scanner(System.in);
@@ -13,9 +14,9 @@ public class Program{
                 case "solve":
                     maze.solve();
                 case "load":
-                    maze.load("");
+                    maze.loadFromFile("");
                 case "save":
-                    maze.save("");
+                    maze.saveToFile("");
                 case "draw":
                     maze.draw();
             }
