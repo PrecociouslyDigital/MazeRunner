@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MazeRunner.core.obj;
 
 import java.io.Serializable;
@@ -14,8 +9,8 @@ import java.io.Serializable;
 public class Maze implements Serializable{
 
     int rows, cols;
-
-    public void setRows(int nRows) {
+    Square[][] 
+    public void setRows(int nRows) { 
         rows = nRows;
     }
 
@@ -23,17 +18,21 @@ public class Maze implements Serializable{
         return rows;
     }
 
-    public void setCols(int nCols) {
+    public void setCols(int nCols){
         cols = nCols;
     }
 
     public int getCols() {
         return  cols;
     }
+    public int getArea(){
+        return rows * cols;
+    }
 
     public boolean isGlade(int row, int col) {
         return checkGladeIndex(row, rows) && checkGladeIndex(col,cols);
     }
+
     public boolean checkGladeIndex(int num, int total){
         if(total%2 == 1){
             return Math.abs(total/2 + 1 - num) <= 3;
@@ -58,6 +57,7 @@ public class Maze implements Serializable{
     }
 
     public void loadFromFile(String fileName) {
+        
     }
 
     public int solve() {
