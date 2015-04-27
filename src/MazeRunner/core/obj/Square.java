@@ -31,7 +31,10 @@ public class Square {
     public int generate(int step){
         if(generated){
             if(step > 95){
-                if(_walls[])
+                if(_walls[step%4]){
+                    _walls[step%4] = false; 
+                    
+                }
             }
         }
     }

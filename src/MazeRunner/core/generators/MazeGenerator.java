@@ -10,8 +10,14 @@ import java.util.Random;
  */
 public class MazeGenerator {
     private static HashSet<Square> connected = new HashSet<>();
+    private static HashSet<Square> searched = new HashSet<>();
     private static Random rand = new Random();
     public static void generate(){
-        
+        while(!connected.isEmpty()){
+            
+        }
+    }
+    public static void add(Square s){
+        connected.add(s);
     }
 }
