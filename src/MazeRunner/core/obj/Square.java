@@ -29,20 +29,35 @@ public class Square {
         }
     }
     public int generate(int step){
-        if(generated){
-            if(step > 95){
-                if(_walls[step%4]){
-                    _walls[step%4] = false; 
-                    
-                }
-            }
+        if(_walls[step%4]){
+                _walls[step%4] = false; 
+                return 0;
+        }
+        if(_walls[step%4 + 1]){
+                _walls[step%4 + 1] = false; 
+                return 1;
+        }
+        return -1;
+    }
+    public void secondGenerate(int step){
+        if(_walls[step%4]){
+                _walls[step%4] = false; 
+                return;
+        }
+        if(_walls[step%4 + 1]){
+                _walls[step%4 + 1] = false; 
+                return;
+        }
+        if(_walls[step%4 + 2]){
+                _walls[step%4 + 2] = false; 
+                return;
         }
     }
     public void setPath(int step, String pathString){
         
     }
     public String toString(){
-        
+        return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : "/");
     }
     public String pathToString(){
         

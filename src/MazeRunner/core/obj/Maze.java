@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Maze implements Serializable{
 
     int rows, cols;
-    Square[][] 
+    Square[][] grid;
     public void setRows(int nRows) { 
         rows = nRows;
     }
@@ -17,7 +17,9 @@ public class Maze implements Serializable{
     public int getRows() {
         return rows;
     }
-
+    public Square getSquare(int x, int y){
+        return grid[x][y];
+    }
     public void setCols(int nCols){
         cols = nCols;
     }

@@ -14,7 +14,7 @@ public class MazeGenerator {
     private static Random rand = new Random();
     public static void generate(){
         while(!connected.isEmpty()){
-            
+            connected.
         }
     }
     public static void add(Square s){
