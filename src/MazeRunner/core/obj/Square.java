@@ -11,6 +11,7 @@ public class Square {
     protected Square [] _neighbors;
     protected Square _path;
     protected boolean generated = false;
+    protected int gScore;
     public Square(){
         _walls = new boolean[]{true,true,true,true};
     }
@@ -33,8 +34,8 @@ public class Square {
                 _walls[step%4] = false; 
                 return 0;
         }
-        if(_walls[step%4 + 1]){
-                _walls[step%4 + 1] = false; 
+        if(_walls[(step + 1)%4]){
+                _walls[(step + 1)%4] = false; 
                 return 1;
         }
         return -1;
@@ -44,16 +45,19 @@ public class Square {
                 _walls[step%4] = false; 
                 return;
         }
-        if(_walls[step%4 + 1]){
-                _walls[step%4 + 1] = false; 
+        if(_walls[(step + 1)%4]){
+                _walls[(step + 1)%4] = false; 
                 return;
         }
-        if(_walls[step%4 + 2]){
-                _walls[step%4 + 2] = false; 
+        if(_walls[(step + 2)%4]){
+                _walls[(step + 2)%4] = false; 
                 return;
         }
     }
     public void setPath(int step, String pathString){
+        
+    }
+    public void solve(int gScore){
         
     }
     public String toString(){
