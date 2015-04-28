@@ -12,6 +12,7 @@ public class Square {
     protected Square _path;
     protected boolean generated = false;
     protected int gScore;
+    protected int[] loc;
     public Square(){
         _walls = new boolean[]{true,true,true,true};
     }
@@ -28,6 +29,9 @@ public class Square {
         if(squares.length == 4){
             _neighbors = squares;
         }
+    }
+    public void setLoc(int x, int y){
+        loc = new int[]{x,y};
     }
     public int generate(int step){
         if(_walls[step%4]){
