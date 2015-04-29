@@ -10,6 +10,37 @@ public class Maze implements Serializable{
 
     int rows, cols;
     Square[][] grid;
+    public Maze(){
+        
+    }
+    public Maze(int x, int y){
+        setRows(x);
+        setCols(y);
+        createNodes();
+    }
+    public void createNodes(){
+        grid = new Square[rows][cols];
+        for(int i = 0; i < rows; i++)
+            for(int j = 0; j < cols; j++){
+                grid[i][j] = new Square();
+                grid[i][j].setLoc(i,j);
+            }
+        grid[0][0].setNeighbors(null, grid[1][0], null, grid[0][1]);
+        grid[0][cols-1].setNeighbors(grid[0][cols-2], grid[1][cols-1], null, null);
+        grid[rows-1][cols-1].setNeighbors(grid[rows-1][cols-2], null, grid[rows-2][cols-1], null);
+        grid[rows-1][0].setNeighbors(null, null, grid[rows-2][0], grid[rows-1][1]);
+        for(int i = 1; i < rows - 1; i++){
+            grid[i][0].setNeighbors(grid[i-1][0],grid[i][1],null,grid[i+1][0]);
+            grid[i][cols-1].setNeighbors(grid[i-1][cols-1],null, grid[i][cols-2],grid[i+1][cols-1]);
+        }
+        for(int i = 1; i < cols - 1; i++){
+            grid[0][i].setNeighbors(null,grid[0][i+1],grid[0][i-1], grid[1][i]);
+            grid[rows-1][i].setNeighbors(grid[rows-2][i],grid[rows-1][i+1],grid[rows-1][i-1], null);
+        }
+        for(int i = 1; i < rows-1; i++)
+            for(int j = 1; j < cols-1; j++)
+                grid[i][j].setNeighbors(grid[i][j-1], grid[i+1][j], grid[i-1][j], grid[i][j+1]);
+    }
     public void setRows(int nRows) { 
         rows = nRows;
     }

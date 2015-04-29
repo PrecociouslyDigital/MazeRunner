@@ -1,5 +1,6 @@
 package MazeRunner.core.generators;
 
+import MazeRunner.core.obj.Maze;
 import MazeRunner.core.obj.Square;
 import java.util.HashSet;
 import java.util.Random;
@@ -12,8 +13,11 @@ public class MazeGenerator {
     private static HashSet<Square> connected = new HashSet<>();
     private static HashSet<Square> searched = new HashSet<>();
     private static Random rand = new Random();
-    public static void generate(){
-        while(!connected.isEmpty()){
+    private static Maze GenMaze;
+    public static void generate(Maze maze){
+        GenMaze = maze;
+        connected.add(maze.getSquare(0,0));
+        while(!(connected.size() + searched.size()) < ){
             pickRandom(connected, rand.nextInt()).generate(rand.nextInt(100));
         }
     }
@@ -34,5 +38,6 @@ public class MazeGenerator {
         HashSet<Square> connected = new HashSet<>();
         HashSet<Square> searched = new HashSet<>();
         Random rand = new Random();
+        GenMaze = null;
     }
 }
