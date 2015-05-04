@@ -4,13 +4,13 @@ import MazeRunner.DrawingPanel;
 import MazeRunner.core.generators.MazeGenerator;
 
 /**
- *
  * @author Benjamin
  */
 public class Square {
     protected boolean [] _walls;
     protected Square [] _neighbors;
     protected Square _path;
+    protected Square _parent;
     protected boolean generated = false;
     protected int gScore;
     protected int[] loc;
@@ -41,7 +41,9 @@ public class Square {
     public int[] getLoc(){
         return loc;
     }
-
+    public int fScore(){
+        
+    }
     public int generate(int step){
         if(_walls[step%4]){
                 _walls[step%4] = false;
@@ -81,7 +83,20 @@ public class Square {
         _path = _neighbors[index];
     }
     public int solve(int step){
-        
+        for(Square s: _neighbors){
+            s.checkBetter(this);
+        }
+        return 0;
+    }
+    public boolean checkBetter(Square s){
+        if(_path == null){
+            _path = s;
+            return true;
+        }else if(s.fScore() < _path.fScore()){
+            _path = s;
+            return true;
+        }
+        return false;
     }
     public String toString(){
         return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : "/");

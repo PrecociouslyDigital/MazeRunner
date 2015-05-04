@@ -17,7 +17,7 @@ public class MazeGenerator {
     public static void generate(Maze maze){
         GenMaze = maze;
         connected.add(maze.getSquare(0,0));
-        while(!(connected.size() + searched.size()) < ){
+        while((connected.size() + searched.size()) < GenMaze.getArea()){
             pickRandom(connected, rand.nextInt()).generate(rand.nextInt(100));
         }
     }
