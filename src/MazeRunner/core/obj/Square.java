@@ -45,17 +45,11 @@ public class Square {
         
     }
     public int generate(int step){
-        if(_walls[step%4]){
-                _walls[step%4] = false;
-                MazeGenerator.add(_neighbors[step%4]);
-                return 0;
-        }
-        if(_walls[(step + 1)%4]){
-                _walls[(step + 1)%4] = false; 
-                MazeGenerator.add(_neighbors[(step + 1)%4]);
-                return 1;
-        }
-        return -1;
+        int target = (int)(step + Math.random() * 4)%4;
+        while(!_walls[target++])
+            target%=4;
+        _walls[target] = _neighbors[target]._walls[3-target] = false;
+        _neighbors[target].generate(step+1);
     }
     public void secondGenerate(int step){
         if(_walls[step%4]){
@@ -82,12 +76,12 @@ public class Square {
         gScore = step;
         _path = _neighbors[index];
     }
-    public int solve(int step){
+/*    public int solve(int step){
         for(Square s: _neighbors){
             s.checkBetter(this);
         }
         return 0;
-    }
+    }*/
     public boolean checkBetter(Square s){
         if(_path == null){
             _path = s;
