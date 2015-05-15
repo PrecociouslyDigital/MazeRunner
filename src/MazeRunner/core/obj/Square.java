@@ -41,15 +41,21 @@ public class Square {
     public int[] getLoc(){
         return loc;
     }
-    public int fScore(){
-        
-    }
     public int generate(int step){
-        int target = (int)(step + Math.random() * 4)%4;
-        while(!_walls[target++])
-            target%=4;
-        _walls[target] = _neighbors[target]._walls[3-target] = false;
-        _neighbors[target].generate(step+1);
+        int base = (int) Math.random() * 4;
+        if(Math.random() > 0.01){
+            return (int)Math.random() * 3 + 1;
+        }
+        for(int i = 0; i < 4; i++){
+            int val = (base + i) % 4;
+            if(_walls[val] && !_neighbors[val].generated){
+                int res = _neighbors[val].generate(step + 1);
+                if(res != 0){
+                    return --res;
+                }
+            }
+        }
+        return 0;
     }
     public void secondGenerate(int step){
         if(_walls[step%4]){
@@ -75,22 +81,6 @@ public class Square {
     public void setPath(int step, int index){
         gScore = step;
         _path = _neighbors[index];
-    }
-/*    public int solve(int step){
-        for(Square s: _neighbors){
-            s.checkBetter(this);
-        }
-        return 0;
-    }*/
-    public boolean checkBetter(Square s){
-        if(_path == null){
-            _path = s;
-            return true;
-        }else if(s.fScore() < _path.fScore()){
-            _path = s;
-            return true;
-        }
-        return false;
     }
     public String toString(){
         return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : "/");
