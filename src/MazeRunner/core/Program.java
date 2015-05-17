@@ -5,7 +5,7 @@ import java.util.*;
 public class Program{
     private static Maze maze;
     public static void main(String[] args){
-        System.exit(0);
+        //System.exit(0);
         maze = new Maze();
         Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
@@ -21,7 +21,10 @@ public class Program{
                     maze.saveToFile("");
                 case "draw":
                     maze.draw();
+                case "print":
+                    System.out.println(maze.toString());
             }
+            input = scn.nextLine();
         }
     }
 }

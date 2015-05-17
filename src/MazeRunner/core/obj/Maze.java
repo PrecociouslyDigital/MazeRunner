@@ -11,14 +11,14 @@ public class Maze implements Serializable{
     int rows, cols;
     Square[][] grid;
     public Maze(){
-        
+        this(10,10);
     }
     public Maze(int x, int y){
         setRows(x);
         setCols(y);
-        createNodes();
+        resetSquares();
     }
-    public void createNodes(){
+    public void resetSquares(){
         grid = new Square[rows][cols];
         for(int i = 0; i < rows; i++)
             for(int j = 0; j < cols; j++){
@@ -80,10 +80,17 @@ public class Maze implements Serializable{
 
     @Override
     public String toString() {
-        return "";
+        String total = "";
+        for(Square[] t : grid){
+            for(Square s : t)
+                total += s.toString();
+            total += "\n";
+        }
+        return total;
     }
 
     public void generate() {
+        grid[0][0].generate(0);
     }
 
     public void saveToFile(String fileName) {

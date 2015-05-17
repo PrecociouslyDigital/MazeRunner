@@ -43,36 +43,20 @@ public class Square {
     }
     public int generate(int step){
         int base = (int) Math.random() * 4;
-        if(Math.random() > 0.01){
+        /*if(Math.random() > 0.01){
             return (int)Math.random() * 3 + 1;
-        }
+        }*/
+        generated = true;
         for(int i = 0; i < 4; i++){
             int val = (base + i) % 4;
+            if(_neighbors[val] == null)
+                continue;
             if(_walls[val] && !_neighbors[val].generated){
+                _walls[val] = _neighbors[val]._walls[3-val] = false;
                 int res = _neighbors[val].generate(step + 1);
-                if(res != 0){
-                    return --res;
-                }
             }
         }
         return 0;
-    }
-    public void secondGenerate(int step){
-        if(_walls[step%4]){
-                _walls[step%4] = false; 
-                MazeGenerator.add(_neighbors[step%4]);
-                return;
-        }
-        if(_walls[(step + 1)%4]){
-                _walls[(step + 1)%4] = false; 
-                MazeGenerator.add(_neighbors[(step + 1)%4]);
-                return;
-        }
-        if(_walls[(step + 2)%4]){
-                _walls[(step + 2)%4] = false; 
-                MazeGenerator.add(_neighbors[(step + 1)%4]);
-                return;
-        }
     }
     public void setPath(int step, String pathString){
         gScore = step;
