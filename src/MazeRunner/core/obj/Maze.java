@@ -1,5 +1,6 @@
 package MazeRunner.core.obj;
 
+import MazeRunner.DrawingPanel;
 import java.io.Serializable;
 
 /**
@@ -7,13 +8,16 @@ import java.io.Serializable;
  * @author s-yinb
  */
 public class Maze implements Serializable{
-
+    private static final int squarePixel = 20;
     int rows, cols;
     Square[][] grid;
+    DrawingPanel pane;
+    
     public Maze(){
         this(10,10);
     }
     public Maze(int x, int y){
+        pane = new DrawingPanel(x*squarePixel,y*squarePixel);
         setRows(x);
         setCols(y);
         resetSquares();
@@ -25,6 +29,7 @@ public class Maze implements Serializable{
                 grid[i][j] = new Square();
                 grid[i][j].setLoc(i,j);
             }
+        grid[0][0] = new GladeSquare();
         grid[0][0].setNeighbors(null, grid[1][0], null, grid[0][1]);
         grid[0][cols-1].setNeighbors(grid[0][cols-2], grid[1][cols-1], null, null);
         grid[rows-1][cols-1].setNeighbors(grid[rows-1][cols-2], null, grid[rows-2][cols-1], null);
@@ -105,5 +110,9 @@ public class Maze implements Serializable{
     }
 
     public void draw(){
+        for(int i = 0; i < rows; i++)
+            for(int j = 0; j < cols; j++){
+                grid[i][j].draw(pane, i*squarePixel, j * squarePixel, squarePixel, squarePixel);
+            }
     }
 }

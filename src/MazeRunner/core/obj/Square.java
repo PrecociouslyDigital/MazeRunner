@@ -2,6 +2,8 @@ package MazeRunner.core.obj;
 
 import MazeRunner.DrawingPanel;
 import MazeRunner.core.generators.MazeGenerator;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  * @author Benjamin
@@ -76,6 +78,14 @@ public class Square {
         return ".";
     }
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
-        
+        Graphics2D g = panel.getGraphics();
+        g.setColor(_walls[0] ? Color.black :Color.white);
+        g.drawLine(originX, originY+height, originX+width, originY+height);
+        g.setColor(_walls[1] ? Color.black :Color.white);
+        g.drawLine(originX + width, originY+height, originX+width, originY);
+        g.setColor(_walls[2] ? Color.black :Color.white);
+        g.drawLine(originX, originY, originX+width, originY);
+        g.setColor(_walls[3] ? Color.black :Color.white);
+        g.drawLine(originX, originY+height, originX, originY);
     }
 }
