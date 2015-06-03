@@ -42,7 +42,7 @@ public class Square {
         return loc;
     }
     public int generate(int step){
-        int base = (int) Math.random() * 4;
+        int base = (int) (Math.random() * 4);
         /*if(Math.random() > 0.01){
             return (int)Math.random() * 3 + 1;
         }*/
@@ -53,7 +53,7 @@ public class Square {
                 continue;
             if(_walls[val] && !_neighbors[val].generated){
                 _walls[val] = _neighbors[val]._walls[3-val] = false;
-                int res = _neighbors[val].generate(step + 1);
+                /*int res =*/ _neighbors[val].generate(step + 1);
             }
         }
         return 0;
