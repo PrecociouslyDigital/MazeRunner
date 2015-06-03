@@ -1,7 +1,6 @@
 package MazeRunner.core.obj;
 
 import MazeRunner.DrawingPanel;
-import MazeRunner.core.generators.MazeGenerator;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
