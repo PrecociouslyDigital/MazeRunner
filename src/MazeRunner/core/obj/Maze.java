@@ -1,7 +1,14 @@
 package MazeRunner.core.obj;
 
 import MazeRunner.DrawingPanel;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,7 +19,7 @@ public class Maze implements Serializable{
     Square[][] grid;
     
     public Maze(){
-        this(20,20);
+        this(200,200);
     }
     public Maze(int x, int y){
         setRows(x);
@@ -105,12 +112,40 @@ public class Maze implements Serializable{
         resetSquares();
         grid[0][0].generate(0);
     }
-
-    public void saveToFile(String fileName) {
+    public void test(){
+        for(Square[] s : grid)
+            for(Square t : s)
+                t.test();
     }
 
+    public void saveToFile(String fileName) {
+        try{
+            FileWriter f = new FileWriter(fileName);
+            f.write(rows + " , " + cols + "\n" + this.toString());
+        }catch(IOException ex){
+            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public String fileOutput(){
+        return rows + " , " + cols + "\n" + this.toString();
+    }
     public void loadFromFile(String fileName) {
-        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
+            String[] parts = in.readLine().split(",");
+            setRows(Integer.parseInt(parts[0].trim()));
+            setCols(Integer.parseInt(parts[1].trim()));
+            resetSquares();
+            for(int t = 0; t < grid.length; t++){
+                parts = in.readLine().split(" ");
+                for(int s = 0; s < grid[t].length; s++)
+                    grid[t][s].setWalls(parts[s]);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public int solve() {
@@ -118,10 +153,10 @@ public class Maze implements Serializable{
     }
 
     public void draw(){
-        DrawingPanel pane = new DrawingPanel(getRows()*getSquareSize(),getCols()*getSquareSize());
+        DrawingPanel pane = new DrawingPanel((getRows() + 2)*getSquareSize(),(getCols() + 2)*getSquareSize());
         for(int i = 0; i < rows; i++)
             for(int j = 0; j < cols; j++){
-                grid[i][j].draw(pane, i*getSquareSize(), j * getSquareSize(), getSquareSize(), getSquareSize());
+                grid[i][j].draw(pane, (i + 1)*getSquareSize(), (j + 1) * getSquareSize(), getSquareSize(), getSquareSize());
             }
     }
 }

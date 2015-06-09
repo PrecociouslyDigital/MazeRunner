@@ -75,12 +75,16 @@ public class Square {
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
         Graphics2D g = panel.getGraphics();
         g.setColor(_walls[0] ? Color.gray :Color.white);
-        g.drawLine(originX, originY, originX+width, originY);
+        g.drawLine(originX, originY, originX+width + 1, originY);
         g.setColor(_walls[1] ? Color.gray :Color.white);
-        g.drawLine(originX, originY+height, originX, originY);
+        g.drawLine(originX + width -1, originY+height+1, originX+width-1, originY);
         g.setColor(_walls[2] ? Color.gray :Color.white);
-        g.drawLine(originX + width, originY+height, originX+width, originY + height);
+        g.drawLine(originX, originY, originX, originY + height + 1);
         g.setColor(_walls[3] ? Color.gray :Color.white);
-        g.drawLine(originX + width, originY+height, originX + width, originY);
+        g.drawLine(originX + width, originY+height + 1, originX + width, originY);
+    }
+    public void test(){
+        generated = true;
+        _walls = new boolean[]{false, false, false, false};
     }
 }

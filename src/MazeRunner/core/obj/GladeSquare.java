@@ -14,6 +14,10 @@ public class GladeSquare extends Square{
         g.setColor(Color.green);
         g.fillRect(originX, originY, width, height);
     }
+    @Override
+    public String toString(){
+        return "....";
+    }
     public GladeSquare(){
         super();
         generated = true;
