@@ -8,28 +8,33 @@ import java.io.Serializable;
  * @author s-yinb
  */
 public class Maze implements Serializable{
-    private static final int squarePixel = 20;
     int rows, cols;
     Square[][] grid;
-    DrawingPanel pane;
     
     public Maze(){
-        this(10,10);
+        this(20,20);
     }
     public Maze(int x, int y){
-        pane = new DrawingPanel(x*squarePixel,y*squarePixel);
         setRows(x);
         setCols(y);
         resetSquares();
     }
     public void resetSquares(){
         grid = new Square[rows][cols];
-        for(int i = 0; i < rows; i++)
-            for(int j = 0; j < cols; j++){
+        for(int i = 1; i < rows-1; i++)
+            for(int j = 1; j < cols-1; j++)
                 grid[i][j] = new Square();
-                grid[i][j].setLoc(i,j);
-            }
-        grid[0][0] = new GladeSquare();
+        for(int i = rows/2-3; i < rows/2 + (rows%2==0?3:4); i++)
+            for(int j = cols/2-3; j < cols/2 + (cols%2==0?3:4); j++)
+                grid[i][j] = new GladeSquare();
+        for(int i = 0; i < rows; i++){
+            grid[i][0] = new EdgeSquare(i,0);
+            grid[i][cols-1] = new EdgeSquare(i,cols-1);
+        }
+        for(int i = 1; i < cols-1; i++){
+            grid[0][i] = new EdgeSquare(0,i);
+            grid[rows-1][i] = new EdgeSquare(rows-1,i);
+        }
         grid[0][0].setNeighbors(null, grid[1][0], null, grid[0][1]);
         grid[0][cols-1].setNeighbors(grid[0][cols-2], grid[1][cols-1], null, null);
         grid[rows-1][cols-1].setNeighbors(grid[rows-1][cols-2], null, grid[rows-2][cols-1], null);
@@ -59,7 +64,9 @@ public class Maze implements Serializable{
     public void setCols(int nCols){
         cols = nCols;
     }
-
+    public int getSquareSize(){
+        return Math.max(800/(rows+2), 800/(cols+2));
+    }
     public int getCols() {
         return  cols;
     }
@@ -86,15 +93,16 @@ public class Maze implements Serializable{
     @Override
     public String toString() {
         String total = "";
-        for(Square[] t : grid){
-            for(Square s : t)
-                total += s.toString();
+        for(int t = 0; t < grid.length; t++){
+            for(int s = 0; s < grid[t].length; s++)
+               total += grid[t][s].toString() + " ";
             total += "\n";
         }
         return total;
     }
 
     public void generate() {
+        resetSquares();
         grid[0][0].generate(0);
     }
 
@@ -110,9 +118,10 @@ public class Maze implements Serializable{
     }
 
     public void draw(){
+        DrawingPanel pane = new DrawingPanel(getRows()*getSquareSize(),getCols()*getSquareSize());
         for(int i = 0; i < rows; i++)
             for(int j = 0; j < cols; j++){
-                grid[i][j].draw(pane, i*squarePixel, j * squarePixel, squarePixel, squarePixel);
+                grid[i][j].draw(pane, i*getSquareSize(), j * getSquareSize(), getSquareSize(), getSquareSize());
             }
     }
 }

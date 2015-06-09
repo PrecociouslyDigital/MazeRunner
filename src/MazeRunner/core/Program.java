@@ -3,7 +3,7 @@ import MazeRunner.core.obj.Maze;
 import java.io.PrintWriter;
 import java.util.*;
 public class Program{
-    private static Maze maze;
+    public static Maze maze;
     public static void main(String[] args){
         //System.exit(0);
         maze = new Maze();

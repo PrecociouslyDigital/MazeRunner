@@ -18,10 +18,6 @@ public class Square {
     public Square(){
         _walls = new boolean[]{true,true,true,true};
     }
-    public Square(int x, int y){
-        _walls = new boolean[]{true,true,true,true};
-        setLoc(x,y);
-    }
     public Square(Square... squares){
         _walls = new boolean[]{true,true,true,true};
         setNeighbors(squares);
@@ -53,38 +49,38 @@ public class Square {
             if(_neighbors[val] == null)
                 continue;
             if(_walls[val] && !_neighbors[val].generated){
-                _walls[val] = _neighbors[val]._walls[3-val] = false;
+                _walls[val] = false;
+                _neighbors[val]._walls[3-val] = false;
+                _neighbors[val]._path = this;
                 /*int res =*/ _neighbors[val].generate(step + 1);
             }
         }
         return 0;
     }
     public void setPath(int step, String pathString){
-        gScore = step;
-        _path = _neighbors["trlb".indexOf(pathString)];
-    }
-    public void setPath(int step, int index){
-        gScore = step;
-        _path = _neighbors[index];
+        _path = _neighbors["tlrb".indexOf(pathString.charAt(step))];
+        _path.setPath(step+1, pathString);
     }
     public String toString(){
-        return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : "/");
+        return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : ".");
     }
     public String pathToString(){
-        for(int i = 0; i < 4; i++)
-            if(_neighbors[i]==_path)
-                return new String[]{"t","r","l","b"}[i];
-        return ".";
+        return "tlrb".charAt(indexOfInArray(_neighbors, _path)) + _path.pathToString();
+    }
+    public static int indexOfInArray(Square[] array, Square comparator){
+        for(int i = 0; i < array.length; i++)
+            if(comparator.equals(array[i])) return i;
+        return -1;
     }
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
         Graphics2D g = panel.getGraphics();
-        g.setColor(_walls[0] ? Color.black :Color.white);
-        g.drawLine(originX, originY+height, originX+width, originY+height);
-        g.setColor(_walls[1] ? Color.black :Color.white);
-        g.drawLine(originX + width, originY+height, originX+width, originY);
-        g.setColor(_walls[2] ? Color.black :Color.white);
+        g.setColor(_walls[0] ? Color.gray :Color.white);
         g.drawLine(originX, originY, originX+width, originY);
-        g.setColor(_walls[3] ? Color.black :Color.white);
+        g.setColor(_walls[1] ? Color.gray :Color.white);
         g.drawLine(originX, originY+height, originX, originY);
+        g.setColor(_walls[2] ? Color.gray :Color.white);
+        g.drawLine(originX + width, originY+height, originX+width, originY + height);
+        g.setColor(_walls[3] ? Color.gray :Color.white);
+        g.drawLine(originX + width, originY+height, originX + width, originY);
     }
 }
