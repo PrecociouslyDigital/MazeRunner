@@ -29,4 +29,8 @@ public class EdgeSquare extends Square{
         else if(Program.maze.rows == this.loc[0]+1)
             g.drawLine(originX + width, originY , originX + width, originY + height);
     }
+    @Override
+    public void drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
+        
+    }
 }

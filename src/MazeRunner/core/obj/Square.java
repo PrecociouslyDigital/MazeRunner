@@ -74,14 +74,29 @@ public class Square {
     }
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
         Graphics2D g = panel.getGraphics();
-        g.setColor(_walls[0] ? Color.gray :Color.white);
-        g.drawLine(originX, originY, originX+width + 1, originY);
-        g.setColor(_walls[1] ? Color.gray :Color.white);
-        g.drawLine(originX + width -1, originY+height+1, originX+width-1, originY);
-        g.setColor(_walls[2] ? Color.gray :Color.white);
-        g.drawLine(originX, originY, originX, originY + height + 1);
-        g.setColor(_walls[3] ? Color.gray :Color.white);
-        g.drawLine(originX + width, originY+height + 1, originX + width, originY);
+        g.setColor( Color.gray);
+        if(_walls[0])
+            g.drawLine(originX, originY, originX+width + 1, originY);
+        if(_walls[1])
+            g.drawLine(originX + width -1, originY+height+1, originX+width-1, originY);
+        if(_walls[2])
+            g.drawLine(originX, originY, originX, originY + height + 1);
+        if(_walls[3])
+            g.drawLine(originX + width, originY+height + 1, originX + width, originY);
+    }
+    public void drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
+        Graphics2D g = panel.getGraphics();
+        g.setColor(Color.red);
+        if(_path == _neighbors[0])
+            g.drawLine(originX + width/2, originY + height/2, originX+width/2, originY - height/2);
+        if(_path == _neighbors[1])
+            g.drawLine(originX + width/2, originY + height/2, originX - width/2, originY + height/2);
+        if(_path == _neighbors[2])
+            g.drawLine(originX + width/2, originY + height/2, originX+width + width/2, originY + height/2);
+        if(_path == _neighbors[3])
+            g.drawLine(originX + width/2, originY + height/2, originX+width/2, originY + height + height/2);
+        if(_path != null)
+            _path.drawPath(panel, originX, originY, width, height);
     }
     public void test(){
         generated = true;

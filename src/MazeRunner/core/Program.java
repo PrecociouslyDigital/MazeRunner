@@ -28,8 +28,9 @@ public class Program{
                     break;
                 case "test":
                     maze.generate();
-                    maze.saveToFile("\\\\interlake-hs\\student\\s-yinb\\test.txt");
-                    maze.loadFromFile("\\\\interlake-hs\\student\\s-yinb\\test.txt");
+                    maze.draw();
+                    maze.saveToFile("maze.txt");
+                    maze.loadFromFile("maze.txt");
                     maze.draw();
                     break;
                 case "print":

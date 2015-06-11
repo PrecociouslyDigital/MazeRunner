@@ -19,7 +19,14 @@ public class GladeSquare extends Square{
         return "....";
     }
     public GladeSquare(){
-        super();
-        generated = true;
+        _walls  = new boolean[]{false, false, false, false};
+    }
+    @Override
+    public int generate(int step){
+        super.generate(step);
+        _walls  = new boolean[]{false, false, false, false};
+        for(int i = 0; i  < 4; i++)
+            _neighbors[i]._walls[3-i] = false;
+        return 0;
     }
 }

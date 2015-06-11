@@ -1,0 +1,21 @@
+20 , 20
+trl. .rl. t.l. t..b t.lb t..b t..b t.l. t..b t..b t..b t..b t..b t..b t.lb t.lb t.lb t.lb t.lb trlb 
+trl. ..lb .rlb t... ..lb t.l. ...b ..lb t.l. .rl. ..lb trl. ..lb tr.. .r.. .r.. .... .r.. .r.. .rl. 
+.rl. tr.. ..lb t..b tr.. .r.b t..b t..b t..b t.lb tr.. ..lb tr.. ..l. .rl. ..lb t..b trl. ..lb .r.b 
+..l. tr.b t..b t... .rl. ..lb t..b tr.. .r.b t... .rl. .r.. .rl. .r.b trl. .r.b t... .rl. ..l. .rl. 
+..l. t..b t..b tr.. ..lb t..b tr.b t.l. .rl. .r.b t.l. .rlb t.l. ..lb t.l. ..lb tr.. .rlb t..b .rl. 
+.rl. tr.b tr.. ..lb tr.b t..b t.l. .r.b t.l. ..lb t..b t.l. .r.b tr.. .r.b tr.. .rl. ..lb t..b .rl. 
+.rl. .rl. ..lb tr.. ..lb t..b t... .rl. .r.b tr.. .r.b tr.. .rl. ..l. .rl. ..lb t.lb tr.. ...b .rlb 
+t.l. tr.. ...b t.lb t..b t... .r.b .... .... .... .... .... .... t... .rlb t..b t... ..lb tr.. .rl. 
+.rl. trl. .r.. .r.b t..b tr.. ..lb .... .... .... .... .... .... tr.b t.l. .r.b t..b t... .rlb .rl. 
+.rl. ..l. .rl. ..lb t..b t.l. .r.b .... .... .... .... .... .... t.l. .r.b trl. ...b tr.. ..lb .r.b 
+trl. tr.. ..lb tr.. .r.b tr.. ..lb .... .... .... .... .... .... t..b t.l. ..lb t..b t.l. .rl. .rl. 
+.rl. ..l. .r.b trl. ..l. .rlb t..b .... .... .... .... .... .... tr.. .r.b t..b tr.. .r.b t.lb .rl. 
+trl. tr.. .rl. ..lb t..b t.l. .r.b .... .... .... .... .... .... t.l. ..lb t..b t.l. .rl. ...b .r.b 
+..l. tr.. .rlb t..b t..b tr.. ..lb t.l. .rl. .rl. ..lb t.l. .rl. .r.b t..b t..b t..b trl. ..l. .rl. 
+.rl. ..l. .rl. .r.b tr.. ..lb tr.. ...b t.l. ..lb tr.b t..b t.l. .rl. .r.b t..b tr.. ..lb t..b .rlb 
+trl. tr.. .rl. .rl. ..lb t... .rl. .r.b t..b tr.. ..lb t..b t..b trl. ..l. ...b t.lb t..b t... .rl. 
+.rl. ..l. .rl. .rl. .r.b tr.b t.l. ..lb tr.. ..lb tr.. .r.b tr.. ..lb tr.b t..b t..b t..b t..b .rlb 
+trl. ...b t.l. ..lb t.l. ..l. .r.b tr.. .rl. .r.b t.l. .rl. ..lb t..b t.l. .r.b t..b tr.. .r.. .rl. 
+trl. ...b tr.. t..b tr.b tr.. .rl. t.l. .rl. .rl. .r.. ..lb t... .r.. ...b t.l. .r.. .rl. ..lb .r.. 
+trlb t..b .r.b t..b t..b t..b .r.b t..b t..b t..b tr.b tr.b t..b tr.b tr.b t..b t..b t..b tr.b .rlb 
