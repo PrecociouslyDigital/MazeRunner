@@ -10,32 +10,15 @@ public class Program{
         Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
         while(!input.equalsIgnoreCase("quit")){
-            switch(input){
-                case "generate":
-                    maze.generate();
-                    break;
-                case "solve":
-                    maze.solve();
-                    break;
-                case "load":
-                    maze.loadFromFile("");
-                    break;
-                case "save":
-                    maze.saveToFile("");
-                    break;
-                case "draw":
-                    maze.draw();
-                    break;
-                case "test":
-                    maze.generate();
-                    maze.draw();
-                    maze.saveToFile("maze.txt");
-                    maze.loadFromFile("maze.txt");
-                    maze.draw();
-                    break;
-                case "print":
-                    System.out.println(maze.toString());
-                    break;
+            if(input.equalsIgnoreCase("draw"))
+                maze.draw();
+            else if(input.toLowerCase().startsWith("load"))
+                maze.loadFromFile(input.substring(4).trim());
+            else if(input.toLowerCase().startsWith("save"))
+                maze.saveToFile(input.substring(4).trim());
+            else if(input.toLowerCase().startsWith("generate")){
+                maze = new Maze(Integer.parseInt(input.split(",")[0].trim()),Integer.parseInt(input.split(",")[1].trim()));
+                maze.generate();
             }
             input = scn.nextLine();
         }

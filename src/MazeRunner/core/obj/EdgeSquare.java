@@ -9,11 +9,12 @@ import MazeRunner.core.Program;
  *
  * @author Benjamin
  */
-public class EdgeSquare extends Square{
+public class EdgeSquare extends GladeSquare{
     public EdgeSquare(int x, int y){
         super();
         setLoc(x,y);
     }
+    
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
         Graphics2D g = panel.getGraphics();
         g.setColor(Color.cyan);
