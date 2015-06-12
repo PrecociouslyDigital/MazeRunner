@@ -145,12 +145,12 @@ public class Maze implements Serializable {
             fw = new FileWriter(fileName);
             fw.write(rows + " , " + cols + "\n" + this.toString());
         } catch (IOException ex) {
-            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Invalid File location!");
         }finally{
             try {
                 fw.flush();
             } catch (IOException ex) {
-                Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("IO Error!");
             }
         }
     }
@@ -174,9 +174,9 @@ public class Maze implements Serializable {
             }
             grid[rows/2 + 3][cols/2 + 3].setPath(0, in.readLine().trim());
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("File dose not exist!");
         } catch (IOException ex) {
-            Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("File does not exist!");
         }
     }
 

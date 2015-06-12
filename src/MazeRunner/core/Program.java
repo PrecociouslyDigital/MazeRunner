@@ -17,7 +17,11 @@ public class Program{
             else if(input.toLowerCase().startsWith("save"))
                 maze.saveToFile(input.substring(4).trim());
             else if(input.toLowerCase().startsWith("generate")){
-                maze = new Maze(Integer.parseInt(input.split(",")[0].trim()),Integer.parseInt(input.split(",")[1].trim()));
+                try{
+                    maze = new Maze(Integer.parseInt(input.split(",")[0].trim()),Integer.parseInt(input.split(",")[1].trim()));
+                }catch(NumberFormatException e){
+                    System.out.println("Invalid Parameters!");
+                }
                 maze.generate();
             }
             input = scn.nextLine();
