@@ -18,7 +18,7 @@ public class EdgeSquare extends Square{
         Graphics2D g = panel.getGraphics();
         g.setColor(Color.cyan);
         g.fillRect(originX, originY, width, height);
-        super.draw(panel,originX,originY,width,height);
+        //super.draw(panel,originX,originY,width,height);
         g.setColor(Color.black);
         if(this.loc[1] == 0)
             g.drawLine(originX, originY, originX + width, originY);
@@ -30,7 +30,7 @@ public class EdgeSquare extends Square{
             g.drawLine(originX + width, originY , originX + width, originY + height);
     }
     @Override
-    public void drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
-        
+    public String drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
+        return "";
     }
 }

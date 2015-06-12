@@ -11,7 +11,6 @@ public class Square {
     protected boolean [] _walls;
     protected Square [] _neighbors;
     protected Square _path;
-    protected Square _parent;
     protected boolean generated = false;
     protected int gScore;
     protected int[] loc;
@@ -64,9 +63,6 @@ public class Square {
     public String toString(){
         return (_walls[0] ? "t" :".") + (_walls[1] ? "r" : ".") + (_walls[2] ? "l" : ".") + (_walls[3] ? "b" : ".");
     }
-    public String pathToString(){
-        return "tlrb".charAt(indexOfInArray(_neighbors, _path)) + _path.pathToString();
-    }
     public static int indexOfInArray(Square[] array, Square comparator){
         for(int i = 0; i < array.length; i++)
             if(comparator.equals(array[i])) return i;
@@ -84,19 +80,35 @@ public class Square {
         if(_walls[3])
             g.drawLine(originX + width, originY+height + 1, originX + width, originY);
     }
-    public void drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
+    public String drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
         Graphics2D g = panel.getGraphics();
         g.setColor(Color.red);
-        if(_path == _neighbors[0])
+        if(_path == _neighbors[0]){
             g.drawLine(originX + width/2, originY + height/2, originX+width/2, originY - height/2);
-        if(_path == _neighbors[1])
+            return _path.drawPath(panel, originX, originY + height, width, height) + "t";
+        }if(_path == _neighbors[1]){
             g.drawLine(originX + width/2, originY + height/2, originX - width/2, originY + height/2);
-        if(_path == _neighbors[2])
+            return _path.drawPath(panel, originX - width, originY, width, height) + "l";
+        }if(_path == _neighbors[2]){
             g.drawLine(originX + width/2, originY + height/2, originX+width + width/2, originY + height/2);
-        if(_path == _neighbors[3])
+            return _path.drawPath(panel, originX + width, originY, width, height) + "r";
+        }if(_path == _neighbors[3]){
             g.drawLine(originX + width/2, originY + height/2, originX+width/2, originY + height + height/2);
-        if(_path != null)
-            _path.drawPath(panel, originX, originY, width, height);
+            return _path.drawPath(panel, originX, originY - height, width, height) + "b";
+        }
+        return "";
+    }
+    public String pathToString(){
+        if(_path == _neighbors[0]){
+            return _path.pathToString() + "t";
+        }if(_path == _neighbors[1]){
+            return _path.pathToString() + "l";
+        }if(_path == _neighbors[2]){
+            return _path.pathToString() + "r";
+        }if(_path == _neighbors[3]){
+            return _path.pathToString() + "b";
+        }
+        return "";
     }
     public void test(){
         generated = true;

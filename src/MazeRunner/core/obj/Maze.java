@@ -156,7 +156,7 @@ public class Maze implements Serializable {
     }
 
     public String fileOutput() {
-        return rows + " , " + cols + "\n" + this.toString();
+        return rows + " , " + cols + "\n" + this.toString() + "\n" + grid[rows/2 + 3][cols/2 + 3].pathToString();
     }
 
     public void loadFromFile(String fileName) {
@@ -172,6 +172,7 @@ public class Maze implements Serializable {
                     grid[t][s].setWalls(parts[s]);
                 }
             }
+            grid[rows/2 + 3][cols/2 + 3].setPath(0, in.readLine().trim());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Maze.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -190,6 +191,6 @@ public class Maze implements Serializable {
                 grid[i][j].draw(pane, (i + 1) * getSquareSize(), (j + 1) * getSquareSize(), getSquareSize(), getSquareSize());
             }
         }
-        grid[rows/2][cols/2].drawPath(pane, rows/2*getSquareSize(), cols/2*getSquareSize(), getSquareSize(), getSquareSize());
+        grid[rows/2 + 3][cols/2 + 3].drawPath(pane, rows/2*getSquareSize(), cols/2*getSquareSize(), getSquareSize(), getSquareSize());
     }
 }
