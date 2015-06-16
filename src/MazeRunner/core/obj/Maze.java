@@ -155,10 +155,6 @@ public class Maze implements Serializable {
         }
     }
 
-    public String fileOutput() {
-        return rows + " , " + cols + "\n" + this.toString() + "\n" + grid[rows/2 + 3][cols/2 + 3].pathToString();
-    }
-
     public void loadFromFile(String fileName) {
         try {
             BufferedReader in = new BufferedReader(new FileReader(fileName));
@@ -172,7 +168,7 @@ public class Maze implements Serializable {
                     grid[t][s].setWalls(parts[s]);
                 }
             }
-            grid[rows/2 + 3][cols/2 + 3].setPath(0, in.readLine().trim());
+            //grid[rows/2 + 3][cols/2 + 3].setPath(0, in.readLine().trim());
         } catch (FileNotFoundException ex) {
             System.out.println("File dose not exist!");
         } catch (IOException ex) {
