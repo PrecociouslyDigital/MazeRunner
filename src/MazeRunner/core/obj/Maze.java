@@ -167,8 +167,8 @@ public class Maze implements Serializable {
                 for (int s = 0; s < grid[t].length; s++) {
                     grid[t][s].setWalls(parts[s]);
                 }
-            }
-            //grid[rows/2 + 3][cols/2 + 3].setPath(0, in.readLine().trim());
+            }if((String s = in.readLine() != null)
+                grid[rows/2 + 3][cols/2 + 3].setPath(0, s.trim());
         } catch (FileNotFoundException ex) {
             System.out.println("File dose not exist!");
         } catch (IOException ex) {
