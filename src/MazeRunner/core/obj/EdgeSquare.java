@@ -9,10 +9,13 @@ import MazeRunner.core.Program;
  *
  * @author Benjamin
  */
-public class EdgeSquare extends GladeSquare{
+public class EdgeSquare extends Square{
     public EdgeSquare(int x, int y){
         super();
         setLoc(x,y);
+    }
+    public EdgeSquare(){
+        super();
     }
     
     public void draw(DrawingPanel panel, int originX, int originY, int width, int height){
@@ -31,7 +34,6 @@ public class EdgeSquare extends GladeSquare{
             g.drawLine(originX + width, originY , originX + width, originY + height);
     }
     @Override
-    public String drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
-        return "";
+    public void drawPath(DrawingPanel panel, int originX, int originY, int width, int height){
     }
 }
